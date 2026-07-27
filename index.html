@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#6B4429">
+<title>Findery</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/favicon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Findery">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== SPLASH ===== -->
+<div id="splash" class="splash">
+  <img src="icons/splash.png" alt="Findery — Spotted. Saved. Someday yours." class="splash-image">
+</div>
+
+<!-- ===== AUTH ===== -->
+<div id="auth-screen" class="auth-screen hidden">
+  <div class="auth-card">
+    <div class="arch-badge">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M20 88 L20 42 A30 30 0 0 1 80 42 L80 88 Z" fill="#6B4429" stroke="#4A2E1C" stroke-width="2"/>
+        <path d="M27 82 L27 44 A23 23 0 0 1 73 44 L73 82 Z" fill="#DCEAEE" fill-opacity="0.9"/>
+        <circle cx="50" cy="60" r="8" fill="#D4A32C"/>
+      </svg>
+    </div>
+    <h2 class="auth-heading">Findery</h2>
+    <p class="auth-sub" id="auth-sub">Sign in to your collection</p>
+
+    <form id="auth-form" class="auth-form">
+      <label class="field-label" for="email">Email</label>
+      <input type="email" id="email" class="field-input" required autocomplete="email" placeholder="you@example.com">
+
+      <label class="field-label" for="password">Password</label>
+      <input type="password" id="password" class="field-input" required autocomplete="current-password" placeholder="••••••••" minlength="6">
+
+      <p id="auth-error" class="auth-error hidden"></p>
+
+      <button type="submit" id="auth-submit" class="btn-primary">Sign in</button>
+    </form>
+
+    <button id="auth-toggle" class="auth-toggle">Don't have an account? <span>Create one</span></button>
+  </div>
+</div>
+
+<!-- ===== APP SHELL ===== -->
+<div id="app-shell" class="app-shell hidden">
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg viewBox="0 0 100 100" class="brand-mark" aria-hidden="true">
+          <path d="M20 88 L20 42 A30 30 0 0 1 80 42 L80 88 Z" fill="#6B4429" stroke="#4A2E1C" stroke-width="2"/>
+          <path d="M27 82 L27 44 A23 23 0 0 1 73 44 L73 82 Z" fill="#DCEAEE" fill-opacity="0.9"/>
+          <circle cx="50" cy="60" r="8" fill="#D4A32C"/>
+        </svg>
+        <span class="brand-name">Findery</span>
+      </div>
+      <button id="logout-btn" class="icon-btn" title="Sign out" aria-label="Sign out">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </button>
+    </div>
+
+    <nav class="category-rail" id="category-rail" aria-label="Categories">
+      <!-- category chips injected by JS -->
+    </nav>
+  </header>
+
+  <main class="app-main" id="app-main">
+    <div class="empty-state" id="empty-state">
+      <img src="icons/icon-192.png" alt="" class="empty-icon">
+      <h3 id="empty-heading">Nothing here yet</h3>
+      <p id="empty-sub">Things you spot out in the world will show up here.</p>
+      <button class="btn-primary btn-small" id="empty-add-btn">Add your first find</button>
+    </div>
+
+    <div class="item-grid hidden" id="item-grid">
+      <!-- item cards injected by JS in a later session -->
+    </div>
+  </main>
+
+  <button class="fab" id="fab-add" title="Add a find" aria-label="Add a find">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  </button>
+</div>
+
+<!-- ===== ADD CATEGORY MODAL ===== -->
+<div id="category-modal" class="modal-overlay hidden">
+  <div class="modal-card">
+    <h3>New category</h3>
+    <input type="text" id="new-category-input" class="field-input" placeholder="e.g. Camping Gear" maxlength="24">
+    <div class="modal-actions">
+      <button class="btn-ghost" id="category-cancel">Cancel</button>
+      <button class="btn-primary btn-small" id="category-save">Add category</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
