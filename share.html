@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shared wishlist — Findery</title>
+<link rel="icon" href="icons/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="share-page">
+  <header class="share-page-header">
+    <svg viewBox="0 0 100 100" class="brand-mark" aria-hidden="true">
+      <path d="M20 88 L20 42 A30 30 0 0 1 80 42 L80 88 Z" fill="#6B4429" stroke="#4A2E1C" stroke-width="2"/>
+      <path d="M27 82 L27 44 A23 23 0 0 1 73 44 L73 82 Z" fill="#DCEAEE" fill-opacity="0.9"/>
+      <circle cx="50" cy="60" r="8" fill="#D4A32C"/>
+    </svg>
+    <h1 id="share-list-title">Loading…</h1>
+    <p class="share-page-sub">Find something to give? Mark it claimed so no one else duplicates it — that stays private, so it's still a surprise.</p>
+  </header>
+
+  <main id="share-content" class="share-content">
+    <p id="share-loading" class="share-status">Loading list…</p>
+    <p id="share-error" class="share-status hidden">This list couldn't be found — the link may be wrong or the list was deleted.</p>
+    <div id="share-grid" class="share-grid hidden"></div>
+  </main>
+</div>
+
+<script src="share.js"></script>
+</body>
+</html>
